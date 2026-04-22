@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>DRIPNEX – genera respeto al siguiente nivel</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -15,10 +15,86 @@
   --text:#f2f2f5;--muted:#6a6a8a;--muted2:#9090b0;
 }
 html{scroll-behavior:smooth}
-body{background:var(--dark);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+
+/* ── FUENTE MEJORADA: Inter para todo el cuerpo ── */
+body{background:var(--dark);color:var(--text);font-family:'Inter','Rajdhani',sans-serif;overflow-x:hidden}
+/* Textos descriptivos, labels, subtítulos — Inter */
+.pdesc,.ssub,.btext p,.promo p,.fbrand p,.pillar .ptxt,
+.slbl,.ccnt,.pcatlbl,.pvariant-label,.ppunit,.modal-desc,
+.modal-unit,.bnr-desc,.bcslog,.bcl,.fcol ul li a,.fbot p{
+  font-family:'Inter',sans-serif;
+  font-weight:500;
+  letter-spacing:0.01em;
+}
+/* Números y precios — Orbitron para estilo, pero más legible */
+.snum,.pprice,.modal-price,.bcn{
+  font-family:'Orbitron',monospace;
+  font-weight:900;
+  letter-spacing:0.04em;
+}
+/* Precios tachados con Inter para máxima legibilidad */
+.ppold,.modal-old{font-family:'Inter',sans-serif;font-weight:500}
+.ppunit,.modal-unit{font-family:'Inter',sans-serif;font-weight:600}
+
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:var(--dark)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--p),var(--g));border-radius:2px}
+
+/* ══════════════════════════════════════════════
+   SPLASH SCREEN
+══════════════════════════════════════════════ */
+#splash{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--dark);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:2rem;text-align:center;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+#splash.hide{opacity:0;visibility:hidden}
+.splash-logo-wrap{margin-bottom:2.5rem}
+#splash-logo-svg{overflow:visible;filter:drop-shadow(0 0 18px rgba(178,100,255,0.35))}
+.splash-card{
+  background:var(--card2);
+  border:1px solid var(--border2);
+  border-radius:12px;
+  padding:2.25rem 2.5rem;
+  max-width:420px;width:100%;
+  position:relative;overflow:hidden;
+}
+.splash-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--p),var(--g));
+}
+.splash-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
+.splash-card h2{
+  font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;
+  letter-spacing:2px;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--p),var(--g));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:1.1rem;line-height:1.4;
+}
+.splash-card p{
+  font-family:'Inter',sans-serif;font-size:.93rem;font-weight:500;
+  color:var(--muted2);line-height:1.75;margin-bottom:1.75rem;
+}
+.splash-card p strong{color:var(--text);font-weight:700}
+.splash-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  width:100%;background:linear-gradient(135deg,var(--p),var(--p2));
+  color:#fff;padding:14px 32px;border-radius:5px;
+  font-family:'Orbitron',monospace;font-size:.75rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;
+  transition:box-shadow .3s,transform .2s;
+  box-shadow:0 0 28px rgba(178,100,255,0.35);
+  -webkit-tap-highlight-color:transparent;
+}
+.splash-btn:hover{box-shadow:0 0 55px rgba(178,100,255,0.65);transform:translateY(-2px)}
+.splash-btn:active{transform:translateY(0)}
+.splash-note{
+  margin-top:1.25rem;font-family:'Inter',sans-serif;
+  font-size:.73rem;color:var(--muted);letter-spacing:.3px;
+}
 
 /* CURSOR — oculto en touch */
 .cdot{width:6px;height:6px;background:var(--p);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
@@ -155,15 +231,15 @@ nav.scrolled{background:rgba(7,7,13,0.97);backdrop-filter:blur(20px);border-bott
 .pthumb img{width:100%;height:100%;object-fit:cover;display:block}
 .pthumb.active,.pthumb:hover{border-color:var(--p);transform:scale(1.1);box-shadow:0 0 8px rgba(178,100,255,0.5)}
 
-.pvariant-label{font-size:.7rem;color:var(--p);letter-spacing:1px;margin-bottom:.4rem;min-height:.9rem;font-weight:600}
+.pvariant-label{font-size:.72rem;color:var(--p);letter-spacing:.5px;margin-bottom:.4rem;min-height:.9rem;font-weight:600}
 .pbody{padding:1.25rem;display:flex;flex-direction:column;flex:1}
 .pcatlbl{font-size:.62rem;color:var(--p);letter-spacing:3px;text-transform:uppercase;margin-bottom:.4rem;font-weight:700}
 .pname{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
-.pdesc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;flex:1}
+.pdesc{font-size:.87rem;color:var(--muted2);line-height:1.65;margin-bottom:1rem;flex:1}
 .pprrow{display:flex;align-items:baseline;gap:.5rem;margin-bottom:1rem}
 .pprice{font-family:'Orbitron',monospace;font-size:1.35rem;font-weight:900;color:var(--g)}
-.ppunit{font-size:.68rem;color:var(--muted)}
-.ppold{font-size:.85rem;color:var(--muted);text-decoration:line-through;font-family:'Orbitron',monospace}
+.ppunit{font-size:.7rem;color:var(--muted);font-weight:600}
+.ppold{font-size:.88rem;color:var(--muted);text-decoration:line-through}
 .btnwa{display:flex;align-items:center;justify-content:center;gap:.55rem;width:100%;background:linear-gradient(135deg,rgba(178,100,255,0.11),rgba(178,100,255,0.05));border:1px solid rgba(178,100,255,0.32);color:var(--p);padding:11px;border-radius:3px;font-family:'Orbitron',monospace;font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .22s;-webkit-tap-highlight-color:transparent}
 .btnwa:hover{background:linear-gradient(135deg,var(--p),var(--p2));border-color:var(--p);color:#fff;box-shadow:0 0 22px rgba(178,100,255,0.45)}
 .btnwa svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
@@ -255,12 +331,12 @@ footer::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;ba
 .modal-close:hover{background:rgba(178,100,255,0.3);border-color:var(--p)}
 .modal-cat{font-size:.62rem;color:var(--p);letter-spacing:3px;text-transform:uppercase;margin-bottom:.5rem;font-weight:700}
 .modal-name{font-family:'Orbitron',monospace;font-size:1.15rem;font-weight:700;margin-bottom:.75rem;line-height:1.3}
-.modal-vlbl{font-size:.75rem;color:var(--p);letter-spacing:1px;margin-bottom:.75rem;min-height:1rem;font-weight:600}
-.modal-desc{font-size:.9rem;color:var(--muted2);line-height:1.75;margin-bottom:1.25rem;flex:1}
+.modal-vlbl{font-size:.78rem;color:var(--p);letter-spacing:.5px;margin-bottom:.75rem;min-height:1rem;font-weight:600}
+.modal-desc{font-size:.92rem;color:var(--muted2);line-height:1.75;margin-bottom:1.25rem;flex:1}
 .modal-pr{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.5rem}
 .modal-price{font-family:'Orbitron',monospace;font-size:1.7rem;font-weight:900;color:var(--g)}
-.modal-unit{font-size:.72rem;color:var(--muted)}
-.modal-old{font-size:1rem;color:var(--muted);text-decoration:line-through;font-family:'Orbitron',monospace}
+.modal-unit{font-size:.75rem;color:var(--muted);font-weight:600}
+.modal-old{font-size:1rem;color:var(--muted);text-decoration:line-through}
 
 /* ════════════════════════════════════════════
    RESPONSIVE — TABLET (≤960px)
@@ -282,65 +358,44 @@ footer::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;ba
    RESPONSIVE — MÓVIL (≤768px)
 ════════════════════════════════════════════ */
 @media(max-width:768px){
-  /* Nav */
   .nav-inner{height:56px}
   .nav-links{display:none}
   .hamburger{display:flex}
-
-  /* Hero */
   .hero{padding:72px 5% 50px}
   .eyebrow{font-size:.6rem;letter-spacing:2.5px;padding:5px 14px 5px 10px}
   .hsub{letter-spacing:2px;margin-bottom:2rem}
   .hbtns{gap:1rem}
   .btnp,.btns{padding:13px 28px;font-size:.7rem}
   .hscroll{bottom:1.5rem}
-
-  /* Stats */
   .si{grid-template-columns:repeat(2,1fr)}
   .stt:nth-child(2)::after{display:none}
   .slbl{font-size:.58rem;letter-spacing:1px}
-
-  /* Banner */
   .bnr-slide{aspect-ratio:4/3}
   .bnr-tag{font-size:.56rem;letter-spacing:2.5px;margin-bottom:.5rem}
   .bnr-cnt{padding:0 5%}
   .barr{width:34px;height:34px;font-size:1.1rem}
-
-  /* Cats */
   .cats-sec{padding:55px 5%}
   .cgrid{grid-template-columns:repeat(2,1fr);gap:.85rem}
   .ccat{padding:1.5rem 1rem}
   .ciw{width:48px;height:48px;font-size:1.3rem}
-
-  /* Products */
   .prods-sec{padding:55px 5%}
   .pgrid{grid-template-columns:1fr 1fr;gap:1rem}
   .pname{font-size:.8rem}
   .pprice{font-size:1.2rem}
   .pbody{padding:1rem}
-  .pdesc{font-size:.8rem}
+  .pdesc{font-size:.82rem}
   .btnwa{font-size:.6rem;padding:9px;letter-spacing:1.5px}
-
-  /* Video */
   .video-sec{padding:55px 5%}
-
-  /* Promo */
   .promo{margin:40px 4%}
   .promo-in{flex-direction:column;text-align:center;padding:2rem 1.75rem;gap:1.5rem}
-  .promo p{font-size:.88rem}
-
-  /* Brand */
+  .promo p{font-size:.9rem}
   .brand-sec{padding:55px 5%}
   .brand-in{gap:2rem}
   .bcard{padding:2rem}
   .bcslog{margin-bottom:1.5rem;padding-bottom:1.5rem}
-
-  /* Footer */
   .fgrid{grid-template-columns:1fr;gap:2rem}
   .fbrand p{max-width:100%}
   .fbot{flex-direction:column;align-items:flex-start;gap:.5rem}
-
-  /* Modal */
   .modal-bg{padding:0;align-items:flex-end}
   .modal{border-radius:14px 14px 0 0;max-height:95vh;overflow-y:auto;display:flex;flex-direction:column}
   .modal-img-side{min-height:220px;max-height:280px}
@@ -351,52 +406,36 @@ footer::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;ba
   .modal-name{font-size:1rem}
   .modal-price{font-size:1.5rem}
   .bcorner{display:none}
+  .splash-card{padding:1.75rem 1.5rem}
+  .splash-card h2{font-size:.88rem}
+  .splash-card p{font-size:.88rem}
 }
 
 /* ════════════════════════════════════════════
    RESPONSIVE — MÓVIL PEQUEÑO (≤480px)
 ════════════════════════════════════════════ */
 @media(max-width:480px){
-  /* Hero */
   .hbtns{flex-direction:column;align-items:center}
   .btnp,.btns{width:100%;max-width:280px;justify-content:center}
-
-  /* Stats */
   .si{grid-template-columns:repeat(2,1fr)}
-
-  /* Banner */
   .bnr-slide{aspect-ratio:3/4}
   .bnr-ov{background:linear-gradient(to bottom,rgba(7,7,13,0.3) 0%,rgba(7,7,13,0.85) 60%,rgba(7,7,13,0.95) 100%)}
   .bnr-cnt{justify-content:flex-end;padding:0 5% 14%}
   .bnr-desc{display:none}
-
-  /* Products — 1 columna en pantallas muy pequeñas */
   .pgrid{grid-template-columns:1fr}
-
-  /* Cats */
   .cgrid{grid-template-columns:repeat(2,1fr)}
-
-  /* Filter bar */
   .fbar{gap:.5rem}
   .fbtn{padding:7px 14px;font-size:.78rem}
-
-  /* Promo */
   .promo{margin:30px 3%}
   .promo-in{padding:1.75rem 1.25rem}
-
-  /* WA float */
   .wabtn{width:50px;height:50px}
   .wabtn svg{width:22px;height:22px}
-
-  /* Modal */
   .modal-img-side{min-height:200px;max-height:250px}
   .modal-info{padding:1rem}
   .modal-name{font-size:.95rem}
+  .splash-card{padding:1.5rem 1.25rem}
 }
 
-/* ════════════════════════════════════════════
-   SAFE AREA — iPhone con notch / Dynamic Island
-════════════════════════════════════════════ */
 @supports(padding:max(0px)){
   nav{padding-left:max(5%,env(safe-area-inset-left));padding-right:max(5%,env(safe-area-inset-right))}
   footer{padding-bottom:max(2.5rem,env(safe-area-inset-bottom))}
@@ -408,6 +447,22 @@ footer::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;ba
 </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════════════════════
+     SPLASH SCREEN
+══════════════════════════════════════════════ -->
+<div id="splash">
+  <div class="splash-logo-wrap">
+    <svg id="splash-logo-svg" height="48" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;display:block"></svg>
+  </div>
+  <div class="splash-card">
+    <span class="splash-icon">⚡</span>
+    <h2>Antes de continuar,<br>por favor refresca la página</h2>
+    <p>Para que nuestro servidor cargue de la <strong>mejor manera</strong> y puedas disfrutar la experiencia completa, te pedimos que recargues antes de ingresar.</p>
+    <button class="splash-btn" onclick="closeSplash()">✓ &nbsp;Continuar</button>
+    <p class="splash-note">Presiona continuar una vez hayas recargado la página</p>
+  </div>
+</div>
 
 <div class="cdot" id="cdot"></div>
 <div class="cring" id="cring"></div>
@@ -629,7 +684,6 @@ footer::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;ba
 <!-- MODAL PRODUCTO -->
 <div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
   <div class="modal" id="modal-box">
-
     <div class="modal-img-side">
       <div class="modal-img-wrap" id="modal-img-wrap">
         <img id="modal-main-img" src="" alt="" style="display:none">
@@ -637,7 +691,6 @@ footer::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;ba
       </div>
       <div class="modal-tbar" id="modal-tbar"></div>
     </div>
-
     <div class="modal-info">
       <button class="modal-close" onclick="document.getElementById('modal-bg').classList.remove('open')">✕</button>
       <div class="modal-cat"   id="modal-cat"></div>
@@ -654,7 +707,6 @@ footer::before{content:'';position:absolute;top:0;left:5%;right:5%;height:1px;ba
         Pedir por WhatsApp
       </a>
     </div>
-
   </div>
 </div>
 
@@ -795,6 +847,12 @@ const products = [
 
 /* ════ MOTOR — NO TOCAR ════ */
 
+/* Splash */
+function closeSplash(){
+  document.getElementById('splash').classList.add('hide');
+  setTimeout(()=>{document.getElementById('splash').style.display='none';},650);
+}
+
 /* Logo */
 function buildLogo(el, fs, hp) {
   const ns='http://www.w3.org/2000/svg';
@@ -816,12 +874,6 @@ function buildLogo(el, fs, hp) {
   tX.setAttribute('font-size',String(fs));tX.setAttribute('font-weight','900');tX.setAttribute('fill','url(#xg)');
   tX.setAttribute('letter-spacing','0');tX.textContent='X'; el.appendChild(tX);
 }
-function initLogos(){
-  buildLogo(document.getElementById('hero-logo-svg'),118,100);
-  buildLogo(document.getElementById('nav-logo-svg'),36,26);
-  buildLogo(document.getElementById('brand-logo-svg'),42,28);
-  buildLogo(document.getElementById('footer-logo-svg'),34,22);
-}
 function getHeroFs(){
   const w=window.innerWidth;
   if(w<=360) return 42;
@@ -837,6 +889,7 @@ function initLogos(){
   buildLogo(document.getElementById('nav-logo-svg'),36,26);
   buildLogo(document.getElementById('brand-logo-svg'),42,28);
   buildLogo(document.getElementById('footer-logo-svg'),34,22);
+  buildLogo(document.getElementById('splash-logo-svg'),52,48);
 }
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(initLogos);}
 else{window.addEventListener('load',initLogos);}
